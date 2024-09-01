@@ -33,7 +33,7 @@ class UserController {
 
     public async getAll(req: Request, res:Response){
         try{
-            const users: UserDocument[] = await userService.findAll();
+            const users: UserDocument[] | null = await userService.findAll();
             res.json(users)
         }
         catch (error){

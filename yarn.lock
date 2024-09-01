@@ -222,13 +222,14 @@ anymatch@~3.1.2:
 "app@file:.":
   version "1.0.0"
   dependencies:
-    app "file:../../../../../AppData/Local/Yarn/Cache/v6/npm-app-1.0.0-ca692e84-9c76-4f05-80e4-7b1c3fdd3970-1725049654788/node_modules/app"
+    app "file:../../../../.cache/yarn/v6/npm-app-1.0.0-1f322ab3-114e-47b4-bbe8-4306adc7f29c-1725161374767/node_modules/app"
     bcrypt "^5.1.1"
     dotenv "^16.4.5"
     express "^4.19.2"
     jsonwebtoken "^9.0.2"
     mongodb "^6.8.0"
     mongoose "^8.5.2"
+    yarn "^1.22.22"
     zod "^3.23.8"
 
 "aproba@^1.0.3 || ^2.0.0":
@@ -1415,6 +1416,11 @@ yallist@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmjs.org/yallist/-/yallist-4.0.0.tgz"
   integrity sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==
+
+yarn@^1.22.22:
+  version "1.22.22"
+  resolved "https://registry.npmjs.org/yarn/-/yarn-1.22.22.tgz"
+  integrity sha512-prL3kGtyG7o9Z9Sv8IPfBNrWTDmXB4Qbes8A9rEzt6wkJV8mUvoirjU0Mp3GGAU06Y0XQyA3/2/RQFVuK7MTfg==
 
 yn@3.1.1:
   version "3.1.1"

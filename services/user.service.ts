@@ -29,10 +29,10 @@ class UserService{
         }
     }
     
-    public async findAll(): Promise<UserDocument[]>{
+    public async findAll(): Promise<UserDocument[] | null>{
         try{
             const users = await UserModel.find();
-            return users
+            return this.dtoList(users)
         }
         catch (error){
             throw error;
@@ -41,8 +41,8 @@ class UserService{
 
     public async findById(id: string): Promise<UserDocument | null>{
         try{
-            const users = await UserModel.findById(id);
-            return users
+            const user = await UserModel.findById(id);
+            return this.dto(user)
         }
         catch (error){
             throw error;
@@ -52,7 +52,7 @@ class UserService{
     public async update(id: string, UserInput: UserInput): Promise<UserDocument | null>{
         try{
             const user : UserDocument | null = await UserModel.findByIdAndUpdate(id, UserInput, {returnOriginal:false});
-            return user;
+            return this.dto(user);
         }
        catch (error) {
             throw error;
@@ -62,7 +62,7 @@ class UserService{
     public async delete(id: string): Promise<UserDocument | null>{
         try{
             const user : UserDocument | null = await UserModel.findByIdAndDelete(id);
-            return user;
+            return this.dto(user);
         }
         catch (error) {
             throw error;
@@ -79,7 +79,7 @@ class UserService{
         }
     }
 
-    public async login(userInput:any): Promise<any>{
+    public async login(userInput:UserInput): Promise<any>{
         try{
             const userExists = await this.findByEmail(userInput.email);
             if(!userExists)
@@ -103,6 +103,33 @@ class UserService{
             throw error;
         }
 
+    }
+
+    private dtoList(users: UserDocument[]){
+        users.forEach(
+            (document, index) =>{
+                users[index] = this.dto(document);
+            }
+        )
+        return users
+    }
+
+    private dto(user: UserDocument | null){
+
+        if(user == null){
+            return null
+        }else{
+            try{
+                const userDto = user.toObject();
+                delete userDto.password;
+                delete userDto.createdAt;
+                delete userDto.updatedAt;
+                delete userDto.__v;
+                return userDto
+            }catch(error){
+                throw error;
+            }
+        }
     }
 }
 
