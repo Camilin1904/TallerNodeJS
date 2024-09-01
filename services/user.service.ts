@@ -7,15 +7,22 @@ import { NotAuthorizedError } from "../exceptions";
 
 class UserService{
 
-    public async create(UserInput: UserInput): Promise<UserDocument>{
+    public async create(userInput: UserInput): Promise<UserDocument>{
         try{
-            const userExists = await this.findByEmail(UserInput.email);
+            const userExists = await this.findByEmail(userInput.email);
             if(userExists)
                 throw new UserExistError("User already exists");
             
-            UserInput.password = await bcrypt.hash(UserInput.password, 10);
-            const user = await UserModel.create(UserInput);
-            return user;
+            userInput.password = await bcrypt.hash(userInput.password, 10);
+            if((await UserModel.find()).length==0){
+                const user = {... userInput, role: "superadmin"}
+                const newUser = await UserModel.create(user);
+                return newUser;
+            }else{
+                const user = {... userInput, role: "user"}
+                const newUser = await UserModel.create(user);
+                return newUser;
+            }
         }
         catch (error) {
             throw error;
@@ -90,7 +97,7 @@ class UserService{
 
     private generateToken(user: UserDocument):string{
         try{
-            return jwt.sign({user_id:user._id,email:user.email, name:user.name}, process.env.JWT_SECRET || "secret", {expiresIn:"5m"});
+            return jwt.sign({user_id:user._id,email:user.email, name:user.name, role:user.role}, process.env.JWT_SECRET || "secret", {expiresIn:"5m"});
         }
         catch(error){
             throw error;
