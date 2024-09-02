@@ -193,7 +193,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://tallernodejs.onrender.com/api/users/66d53b3774070183a9c46e07",
+							"raw": "https://tallernodejs.onrender.com/api/users/66d5bb43c883db80e810421f",
 							"protocol": "https",
 							"host": [
 								"tallernodejs",
@@ -203,7 +203,7 @@
 							"path": [
 								"api",
 								"users",
-								"66d53b3774070183a9c46e07"
+								"66d5bb43c883db80e810421f"
 							]
 						}
 					},
@@ -293,7 +293,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"text\": \"Nuevo comentario\",\r\n    \"parent\": \"66d5c19e141d971393e0acdb\"\r\n}",
+							"raw": "{\r\n    \"text\": \"Nuevo Comentario\",\r\n    \"parent\": \"66d618e8139eeef398c3e470\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -355,7 +355,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://tallernodejs.onrender.com/api/comments/66d53b933e8ea39ecd4052e7",
+							"raw": "https://tallernodejs.onrender.com/api/comments/66d618e8139eeef398c3e470",
 							"protocol": "https",
 							"host": [
 								"tallernodejs",
@@ -365,7 +365,7 @@
 							"path": [
 								"api",
 								"comments",
-								"66d53b933e8ea39ecd4052e7"
+								"66d618e8139eeef398c3e470"
 							]
 						}
 					},
@@ -392,7 +392,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://tallernodejs.onrender.com/api/comments/66d5cd09d60c14439eadc794",
+							"raw": "https://tallernodejs.onrender.com/api/comments/66d6193c139eeef398c3e479",
 							"protocol": "https",
 							"host": [
 								"tallernodejs",
@@ -402,7 +402,7 @@
 							"path": [
 								"api",
 								"comments",
-								"66d5cd09d60c14439eadc794"
+								"66d6193c139eeef398c3e479"
 							]
 						}
 					},
@@ -420,7 +420,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://tallernodejs.onrender.com/api/comments/66d5cd09d60c14439eadc794",
+							"raw": "https://tallernodejs.onrender.com/api/comments/66d6193c139eeef398c3e479",
 							"protocol": "https",
 							"host": [
 								"tallernodejs",
@@ -430,7 +430,7 @@
 							"path": [
 								"api",
 								"comments",
-								"66d5cd09d60c14439eadc794"
+								"66d6193c139eeef398c3e479"
 							]
 						}
 					},
@@ -455,7 +455,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"reaction\" : 3\r\n}",
+							"raw": "{\r\n    \"reaction\" : 4\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -463,7 +463,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://tallernodejs.onrender.com/api/comments/reactions/66d5c19e141d971393e0acdb",
+							"raw": "https://tallernodejs.onrender.com/api/comments/reactions/66d618e8139eeef398c3e470",
 							"protocol": "https",
 							"host": [
 								"tallernodejs",
@@ -474,7 +474,7 @@
 								"api",
 								"comments",
 								"reactions",
-								"66d5c19e141d971393e0acdb"
+								"66d618e8139eeef398c3e470"
 							]
 						}
 					},
@@ -492,7 +492,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://tallernodejs.onrender.com/api/comments/reactions/66d53b933e8ea39ecd4052e7",
+							"raw": "https://tallernodejs.onrender.com/api/comments/reactions/66d618e8139eeef398c3e470",
 							"protocol": "https",
 							"host": [
 								"tallernodejs",
@@ -503,7 +503,7 @@
 								"api",
 								"comments",
 								"reactions",
-								"66d53b933e8ea39ecd4052e7"
+								"66d618e8139eeef398c3e470"
 							]
 						}
 					},
@@ -521,7 +521,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://tallernodejs.onrender.com/api/comments/reactions/66d53b933e8ea39ecd4052e7/66d53dd13e8ea39ecd405305",
+							"raw": "https://tallernodejs.onrender.com/api/comments/reactions/66d618e8139eeef398c3e470/66d619c3139eeef398c3e487",
 							"protocol": "https",
 							"host": [
 								"tallernodejs",
@@ -532,8 +532,8 @@
 								"api",
 								"comments",
 								"reactions",
-								"66d53b933e8ea39ecd4052e7",
-								"66d53dd13e8ea39ecd405305"
+								"66d618e8139eeef398c3e470",
+								"66d619c3139eeef398c3e487"
 							]
 						}
 					},
@@ -552,7 +552,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"reaction\" : 4\r\n}",
+							"raw": "{\r\n    \"reaction\" : 3\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -560,7 +560,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://tallernodejs.onrender.com/api/comments/reactions/66d53b933e8ea39ecd4052e7/66d53e573e8ea39ecd405314",
+							"raw": "https://tallernodejs.onrender.com/api/comments/reactions/66d618e8139eeef398c3e470/66d619c3139eeef398c3e487",
 							"protocol": "https",
 							"host": [
 								"tallernodejs",
@@ -571,8 +571,8 @@
 								"api",
 								"comments",
 								"reactions",
-								"66d53b933e8ea39ecd4052e7",
-								"66d53e573e8ea39ecd405314"
+								"66d618e8139eeef398c3e470",
+								"66d619c3139eeef398c3e487"
 							]
 						}
 					},
@@ -590,7 +590,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://tallernodejs.onrender.com/api/comments/reactions/66d53b933e8ea39ecd4052e7/66d53e573e8ea39ecd405314",
+							"raw": "https://tallernodejs.onrender.com/api/comments/reactions/66d618e8139eeef398c3e470/66d619c3139eeef398c3e487",
 							"protocol": "https",
 							"host": [
 								"tallernodejs",
@@ -601,15 +601,15 @@
 								"api",
 								"comments",
 								"reactions",
-								"66d53b933e8ea39ecd4052e7",
-								"66d53e573e8ea39ecd405314"
+								"66d618e8139eeef398c3e470",
+								"66d619c3139eeef398c3e487"
 							]
 						}
 					},
 					"response": []
 				}
 			],
-			"description": "Recuerde que para ejecutar las operaciones update y delete el jwt a usar debe ser del dueño de la reacción\n\nEn los escenarios pre establecidos el dueño de la reacción a actualizar y borrar es:\n\n``` json\n{\n    \"email\": \"admin@example.com\",\n    \"password\": \"admin123*\"\n}\n\n ```\n\n| Operation | Method | Address | Body |\n| --- | --- | --- | --- |\n| Create | POST | api/comments/reactions/:commentId | reaction |\n| Get All | GET | api/comments/reactions/:commentId | None |\n| Get By Id | GET | api/comments/reactions/:commentId/:id | None |\n| Update | PUT | api/comments/reactions/:commentId/:id | reaction |\n| Delete | DELETE | api/comments/reactions/:commentId/:id | None |\n\nEjemplo de estructura::\n\n``` json\n{\n    \"reaction\" : 3\n}\n\n ```"
+			"description": "Recuerde que para ejecutar las operaciones update y delete el jwt a usar debe ser del dueño de la reacción\n\nEn los escenarios pre establecidos el dueño de la reacción a actualizar y borrar es:\n\n``` json\n{\n    \"email\": \"user@example.com\",\n    \"password\": \"user123*\"\n}\n\n ```\n\n| Operation | Method | Address | Body |\n| --- | --- | --- | --- |\n| Create | POST | api/comments/reactions/:commentId | reaction |\n| Get All | GET | api/comments/reactions/:commentId | None |\n| Get By Id | GET | api/comments/reactions/:commentId/:id | None |\n| Update | PUT | api/comments/reactions/:commentId/:id | reaction |\n| Delete | DELETE | api/comments/reactions/:commentId/:id | None |\n\nEjemplo de estructura::\n\n``` json\n{\n    \"reaction\" : 3\n}\n\n ```"
 		},
 		{
 			"name": "Requets para ver si el servidor está funcionando",
