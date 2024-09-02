@@ -1,7 +1,7 @@
 import express, {Express, Request, Response} from 'express';
 import dotenv from "dotenv";
-import { userRouter } from '../routes/users.router';
-import { commentRouter } from '../routes/comment.router';
+import { userRouter } from './routes/users.router';
+import { commentRouter } from './routes/comment.router';
 import { db } from '../config/db';
 
 const app: Express = express();
