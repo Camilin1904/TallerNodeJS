@@ -21,8 +21,3 @@ userRouter.get("/:id", auth, userController.getUser);
 userRouter.put("/:id", auth, authRole, userController.update);
 //
 userRouter.delete("/:id", auth, authRole, userController.delete);
-
-
-userRouter.get("/:id/group/:groupId", (req: Request, res:Response) => {
-    res.send(`get user with id ${req.params.id} and group id ${req.params.groupId}`)
-});

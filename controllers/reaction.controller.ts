@@ -47,7 +47,7 @@ class ReactionController {
 
     public async getReaction(req: Request, res:Response){
         try{
-            const reaction: ReactionDocument[] | null = await reactionService.findById(req.params.commentId,req.params.id);
+            const reaction: ReactionDocument | null = await reactionService.findById(req.params.commentId,req.params.id);
             res.status(200).json(reaction)
         }
         catch (error){
@@ -87,7 +87,7 @@ class ReactionController {
                     break;
             }
             const reactionInput: ReactionInput = {"reaction":re, "author":new mongoose.Types.ObjectId(req.params.id), "authorName":req.params.name};
-            const reaction: ReactionDocument | null = await reactionService.update(req.params.commentId, req.params.id, reactionInput);
+            const reaction: ReactionDocument | null = await reactionService.update(req.params.commentId, req.params.id, reactionInput, req.params.authId);
             res.status(200).json(reaction)
         }
         catch (error){
@@ -99,7 +99,7 @@ class ReactionController {
 
     public async delete(req: Request, res:Response){
         try{
-            const reaction: ReactionDocument | null = await reactionService.delete(req.params.commentId, req.params.id);
+            const reaction: ReactionDocument | null = await reactionService.delete(req.params.commentId, req.params.id, req.params.authId);
             res.status(200).json(reaction)
         }
         catch (error){
