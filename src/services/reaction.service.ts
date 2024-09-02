@@ -48,9 +48,9 @@ export class ReactionService {
             
             comment.save();
             return reaction;
+        }else{
+            throw new NotAuthorizedError("This user cannot nodify this reaction")
         }
-    
-        else throw new NotAuthorizedError("This user cannot nodify this comment")
     }
 
     async delete(commentId: string, reactionId: string, userId: string): Promise<ReactionDocument | null> {
@@ -68,9 +68,9 @@ export class ReactionService {
             comment.save();
 
             return reaction;
+        }else{
+            throw new NotAuthorizedError("This user cannot nodify this reaction")
         }
-    
-        else throw new NotAuthorizedError("This user cannot nodify this comment")
     }
 
     async isOwner(authId: string, commentId: string): Promise<boolean>{
