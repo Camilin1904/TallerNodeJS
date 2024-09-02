@@ -24,7 +24,7 @@ export interface CommentDocument extends CommentInput, mongoose.Document {
     createdAt: Date;
     updatedAt: Date;
     deletedAt?: Date;
-    comments: this[];
+    comments: mongoose.Types.ObjectId[];
     reactions: ReactionDocument[];
 }
 
@@ -39,7 +39,8 @@ const commentSchema = new mongoose.Schema({
     text: { type: String, required: true },
     author: {type:mongoose.Types.ObjectId, required: true},
     authorName: { type: String, required: true },
-    comments: [this],
+    comments: [{type:mongoose.Types.ObjectId, required: false}],
+    parent: {type:mongoose.Types.ObjectId, required: false},
     reactions: [reactionSchema]
 }, { timestamps: true, collection: "comments" });
 

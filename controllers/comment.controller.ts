@@ -61,7 +61,7 @@ class CommentController {
 
     public async delete(req: Request, res:Response){
         try{
-            const comment: CommentDocument | null = await commentService.delete(req.params.authId);
+            const comment: CommentDocument | null = await commentService.delete(req.params.id);
             res.status(200).json(comment)
         }
         catch (error){

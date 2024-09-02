@@ -13,7 +13,7 @@ export class CommentService {
       if(commentText.parent){
           const parent = await CommentModel.findById(commentText.parent);
           if(parent){
-            parent.comments.push(newComment);
+            parent.comments.push(newComment.id);
             parent.save()
           }
       }
@@ -42,24 +42,14 @@ export class CommentService {
         }
     }
 
-    public async update(id: string, CommentInput: CommentInput): Promise<CommentDocument | null>{
-      try{
-          const comment : CommentDocument | null = await CommentModel.findByIdAndUpdate(id, CommentInput, {returnOriginal:false});
-          if(comment?.parent){
-            const parent: CommentDocument | null = await CommentModel.findById(comment.parent);
-            if (parent){
-              const inner = (parent.comments as mongoose.Types.DocumentArray<CommentDocument>).id(id);
-              if(inner)
-                inner.text = CommentInput.text;
-              parent.save();
-            }
-          }
+    public async update(id: string, commentInput: CommentInput): Promise<CommentDocument | null> {
+      try {
+          const comment: CommentDocument | null = await CommentModel.findByIdAndUpdate(id, commentInput, { returnOriginal: false });
           return comment;
-      }
-     catch (error) {
+      } catch (error) {
           throw error;
       }
-    }
+  }
 
     public async delete(id: string): Promise<CommentDocument | null>{
       try{
@@ -67,13 +57,11 @@ export class CommentService {
           if(comment?.parent){
             const parent: CommentDocument | null = await CommentModel.findById(comment.parent);
             if (parent){
-              const inner = (parent.comments as mongoose.Types.DocumentArray<CommentDocument>).id(id);
-              if(inner){
-                const reactionIndex = parent.comments.findIndex(comm => comm._id === id)
-                parent.comments.splice(reactionIndex, 1)
-              }
-                
+
+              const reactionIndex = parent.comments.findIndex(comm => comm._id.toString() === id)
+              parent.comments.splice(reactionIndex, 1)
               parent.save();
+              
             }
           }
           return comment;
