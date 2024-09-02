@@ -14,6 +14,9 @@ Desarrollar una aplicación backend robusta con Node.js que utilice TypeScript p
 ## Despliegue
 El proyecto se encuentra desplegado en la siguiente url: https://tallernodejs.onrender.com
 
+Nota: Dado que el despliegue se realizó de forma gratuita, despues de un periodo de inactividad es posible que se demore 1 minuto en volver a levantarse.
+
+Como el proyecto esta siendo hosteado en un servicio externo, no tenemos control sobre la estabilidad de la conección con el servidor.
 ## Ejecución
 1. Clonar el repositorio
 2. Tener instalado de forma global npm y yarn
