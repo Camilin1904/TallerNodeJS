@@ -12,7 +12,7 @@ Este proyecto forma parte del curso de "Computación en Internet 3" del pregrado
 Desarrollar una aplicación backend robusta con Node.js que utilice TypeScript para un tipado fuerte y MongoDB para la persistencia de datos. La aplicación permitirá realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) en usuarios y comentarios, manejar la autenticación de usuarios, gestionar la creación y respuestas a comentarios (incluyendo creación y eliminación de reacciones).
 
 ## Despliegue
-El proyecto se encuentra desplegado en la siguiente url:
+El proyecto se encuentra desplegado en la siguiente url: https://tallernodejs.onrender.com
 
 ## Ejecución
 1. Clonar el repositorio
@@ -38,9 +38,11 @@ o
 1. Abrir postman
 2. Dirigirse arriba a la izquierda en las tres líneas
 3. File >> Import >> Elegir el Json que se encuentra en el repo
-4. Leer la overview de cada carpeta, en ellas se encuentran explicaciones y la gestión del JWT
+4. Leer la overview de cada carpeta, en ellas se encuentran los métodos de cada endpoint, sus rutas, los documentos que reciben y la gestión del JWT
 5. Ejecutar las requests
 
 ## Dificultades Encontradas
 
 La gestión de comentarios fue la principal dificultad y la que más perduró a lo largo del desarrollo, comenzamos con la idea de guardarlos de forma embebida en los usuarios de tal forma que cada usuario conociese de forma directa sus comentarios, pero al momento de pensar en los hilos esta idea tuvo que ser descartada, pues cada comentario que ya existía dentro de un usuario debería de alguna forma guardar referencia a los comentarios padres o hijos. Decidimos entonces guardar los comentarios en una colección aparte. Y, dentro del usuario un arreglo que almacene los ObjectId de sus comentarios, mientras que cada comentario guarda el ObjectId de su padre e hijos conservando las referencias, ya que al intentar guardar una copia de estos, se encontraban dificultades al momento de borrarlos y actualizarlos.
+
+La segunda dificultad se presentó al momento de querer desplegar, ya que inicialmente se trató de desplegar en vercel pero el despliegue siempre arrojaba un 404, se estuvo un tiempo trabajando para descifrar la razón y aparentemente se relacionaba con el build. Sin embargo al no lograr más avances se decidió cambiar a la plataforma de render, donde el proceso fue igual de simple, con la diferencia de que no se presentaron inconvenientes y el despliegue fue exitoso
