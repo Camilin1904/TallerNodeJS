@@ -96,6 +96,8 @@ export class CommentService {
     }
     //Checks if any user is teh author of a comment.
     async isOwner(authId: string, commentId: string): Promise<boolean>{
+      console.log(authId)
+      console.log(commentId)
       const comment = await CommentModel.findById(commentId);
       return authId==comment?.author
     }
