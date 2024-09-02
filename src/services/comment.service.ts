@@ -69,6 +69,8 @@ export class CommentService {
       if(await this.isOwner(userId, id)){
         try{
             const comment : CommentDocument | null = await CommentModel.findByIdAndDelete(id);
+            //When a comment that has a son is deleted all the son comments should be deleted
+            await CommentModel.deleteMany({parent:id})
             //when a comment that has a parent is deleted, it should alse be removed from the list
             ///of subcoments of the parent
             if(comment?.parent){
@@ -89,7 +91,7 @@ export class CommentService {
             throw error;
         }
       }
-      else throw new NotAuthorizedError("This user cannot nodify this comment")
+      else throw new NotAuthorizedError("This user cannot modify this comment")
 
     }
     //Checks if any user is teh author of a comment.

@@ -2,6 +2,7 @@ import express, {Request, Response} from "express";
 import { CommentDocument,CommentInput } from "../models/comment.model";
 import commentService from "../services/comment.service";
 import CommentDoesNotExistError from "../exceptions/CommentDoesNotExistsError";
+import { NotAuthorizedError } from "../exceptions";
 
 
 class CommentController {
@@ -60,8 +61,11 @@ class CommentController {
             res.status(200).json(comment)
         }
         catch (error){
-            console.log(error)
-            res.status(500).json(error)
+            if(error instanceof NotAuthorizedError){
+                res.status(401).json("This user cannot modify this comment")
+            }else{
+                res.status(500).json(error)
+            }
         }
         
     }
@@ -72,8 +76,11 @@ class CommentController {
             res.status(200).json(comment)
         }
         catch (error){
-            console.log(error)
-            res.status(500).json(error)
+            if(error instanceof NotAuthorizedError){
+                res.status(401).json("This user cannot modify this comment")
+            }else{
+                res.status(500).json(error)
+            }
         }
         
     }

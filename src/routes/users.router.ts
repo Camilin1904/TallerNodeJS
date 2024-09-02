@@ -3,7 +3,7 @@ import validateSchema from "../middlewares/validateSchema";
 import userSchema from "../schemas/user.schema";
 import userController from "../controllers/user.controller";
 import auth from "../middlewares/auth";
-import authRole from "../middlewares/roleAuth";
+import authRole from "../middlewares/authRole";
 
 export const userRouter = express.Router();
 

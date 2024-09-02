@@ -34,7 +34,7 @@ class UserService{
     public async findAll(): Promise<UserDocument[] | null>{
         try{
             const users = await UserModel.find();
-            return this.dtoList(users)
+            return this.hidePasswordList(users)
         }
         catch (error){
             throw error;
@@ -44,7 +44,7 @@ class UserService{
     public async findById(id: string): Promise<UserDocument | null>{
         try{
             const user = await UserModel.findById(id);
-            return this.dto(user)
+            return this.hidePassword(user)
         }
         catch (error){
             throw error;
@@ -55,7 +55,7 @@ class UserService{
         try{
             userInput.password = await bcrypt.hash(userInput.password, 10);
             const user : UserDocument | null = await UserModel.findByIdAndUpdate(id, userInput, {returnOriginal:false});
-            return this.dto(user);
+            return this.hidePassword(user);
         }
        catch (error) {
             throw error;
@@ -65,7 +65,7 @@ class UserService{
     public async delete(id: string): Promise<UserDocument | null>{
         try{
             const user : UserDocument | null = await UserModel.findByIdAndDelete(id);
-            return this.dto(user);
+            return this.hidePassword(user);
         }
         catch (error) {
             throw error;
@@ -108,17 +108,17 @@ class UserService{
 
     }
     //Hides the password from fetches to the users
-    private dtoList(users: UserDocument[]){
+    private hidePasswordList(users: UserDocument[]){
         users.forEach(
             (document, index) =>{
-                users[index] = this.dto(document);
+                users[index] = this.hidePassword(document);
             }
         )
         return users
     }
 
     //The passwordless document
-    private dto(user: UserDocument | null){
+    private hidePassword(user: UserDocument | null){
 
         if(user == null){
             return null
@@ -126,9 +126,6 @@ class UserService{
             try{
                 const userDto = user.toObject();
                 delete userDto.password;
-                delete userDto.createdAt;
-                delete userDto.updatedAt;
-                delete userDto.__v;
                 return userDto
             }catch(error){
                 throw error;
