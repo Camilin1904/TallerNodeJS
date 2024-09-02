@@ -18,6 +18,6 @@ userRouter.get("/", auth, userController.getAll);
 //Get by Id
 userRouter.get("/:id", auth, userController.getUser);
 //Update
-userRouter.put("/:id", auth, authRole, userController.update);
+userRouter.put("/:id", auth, authRole, validateSchema(userSchema), userController.update);
 //
 userRouter.delete("/:id", auth, authRole, userController.delete);
