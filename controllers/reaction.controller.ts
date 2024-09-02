@@ -9,6 +9,7 @@ import mongoose from "mongoose";
 class ReactionController {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
     public async create(req:Request, res:Response){
+        //translates the numeric input that is required to its corresponding string
         try{
             var re = reactions.VACIO;
             switch(req.body.reaction){
@@ -28,19 +29,16 @@ class ReactionController {
                     re = reactions.ME_ENFADA;
                     break;
             }
-            console.log(re);
-            const reactionInput: ReactionInput = {"reaction":re, "author": new mongoose.Types.ObjectId(req.params.authId), "authorName":req.params.name}
+            //Builds the reaction input object
+            const reactionInput: ReactionInput = {"reaction":re, "author": new mongoose.Types.ObjectId(req.params.authId), "authorName":req.params.name};
 
             const reaction: ReactionDocument | null = await reactionService.create(req.params.commentId, reactionInput);
-            res.status(201).json(reaction)
+            res.status(201).json(reaction);
         }
         catch (error){
-            console.log(error)
-            if (error instanceof UserExistError){
-                res.status(400).json("User already exists")
+            console.log(error);
 
-            }
-            res.status(500).json(error)
+            res.status(500).json(error);
         }
         
     }
@@ -67,6 +65,7 @@ class ReactionController {
     }
 
     public async update(req: Request, res:Response){
+        //Translates the numeric input to its actual equivalent
         try{
             var re = reactions.VACIO;
             switch(req.body.reaction){

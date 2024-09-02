@@ -11,8 +11,9 @@ const PORT = process.env.PORT || 8000;
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
-
-app.use('/api/users', userRouter);
+//Routes for user operations
+app.use('/api/users', userRouter); 
+//Routes for comment operations
 app.use('/api/comments', commentRouter);
 
 

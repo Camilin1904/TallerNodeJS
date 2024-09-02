@@ -6,7 +6,7 @@ import auth from "../middlewares/auth";
 import reactionController from "../controllers/reaction.controller";
 
 export const commentRouter = express.Router();
-
+//Reactions routes
 commentRouter.post("/reactions/:commentId", auth, reactionController.create);
 
 commentRouter.get("/reactions/:commentId", auth, reactionController.getAll);
@@ -17,7 +17,7 @@ commentRouter.put("/reactions/:commentId/:id", auth, reactionController.update);
 
 commentRouter.delete("/reactions/:commentId/:id", auth, reactionController.delete);
 
-
+//Comments routes
 commentRouter.post("/", auth, validateSchema(commentSchema), commentController.create);
 
 commentRouter.get("/", auth, commentController.getAll);

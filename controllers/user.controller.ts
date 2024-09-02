@@ -12,6 +12,7 @@ class UserController {
         }
         catch (error){
             if (error instanceof UserExistError){
+                //Users are unique
                 res.status(400).json("User already exists")
 
             }

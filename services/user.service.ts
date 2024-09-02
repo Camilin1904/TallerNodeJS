@@ -10,10 +10,12 @@ class UserService{
     public async create(userInput: UserInput): Promise<UserDocument>{
         try{
             const userExists = await this.findByEmail(userInput.email);
+            //There must only be one user per email
             if(userExists)
                 throw new UserExistError("User already exists");
             
             userInput.password = await bcrypt.hash(userInput.password, 10);
+            //If there are no more users, a supr admin is created to ensure that there is always atleast one
             if((await UserModel.find()).length==0){
                 const user = {... userInput, role: "superadmin"}
                 const newUser = await UserModel.create(user);
@@ -95,7 +97,7 @@ class UserService{
             throw error;
         }
     }
-
+    
     private generateToken(user: UserDocument):string{
         try{
             return jwt.sign({user_id:user._id,email:user.email, name:user.name, role:user.role}, process.env.JWT_SECRET || "secret", {expiresIn:"5m"});
@@ -105,7 +107,7 @@ class UserService{
         }
 
     }
-
+    //Hides the password from fetches to the users
     private dtoList(users: UserDocument[]){
         users.forEach(
             (document, index) =>{
@@ -115,6 +117,7 @@ class UserService{
         return users
     }
 
+    //The passwordless document
     private dto(user: UserDocument | null){
 
         if(user == null){
