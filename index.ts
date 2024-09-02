@@ -1,8 +1,8 @@
 import express, {Express, Request, Response} from 'express';
 import dotenv from "dotenv";
-import { userRouter } from './routes/users.router';
-import { commentRouter } from './routes/comment.router';
-import { db } from '../config/db';
+import { userRouter } from './src/routes/users.router';
+import { commentRouter } from './src/routes/comment.router';
+import { db } from './config/db';
 
 const app: Express = express();
 dotenv.config();
@@ -15,7 +15,6 @@ app.use(express.urlencoded({extended:true}));
 app.use('/api/users', userRouter); 
 //Routes for comment operations
 app.use('/api/comments', commentRouter);
-
 
 app.get('/',(req:Request, res:Response) => {
     res.send('Hello world :)');
