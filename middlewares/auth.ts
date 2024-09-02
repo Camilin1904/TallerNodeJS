@@ -10,10 +10,10 @@ const auth = async(req:Request, res:Response, next:NextFunction)=>{
             token = token.replace("Bearer ", "");
             const decoded: any = jwt.verify(token, process.env.JWT_SECRET || "secret");
             req.body.loggedUser = decoded;
-            req.params.id = decoded.user_id;
+            req.params.authId = decoded.user_id;
             req.params.role = decoded.role;
-            req.params.name = decoded.user_name;
-            req.params.email = decoded.user_email;
+            req.params.name = decoded.name;
+            req.params.email = decoded.email;
             next();
         }
 

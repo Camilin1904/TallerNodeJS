@@ -49,9 +49,10 @@ class UserService{
         }
     }
 
-    public async update(id: string, UserInput: UserInput): Promise<UserDocument | null>{
+    public async update(id: string, userInput: UserInput): Promise<UserDocument | null>{
         try{
-            const user : UserDocument | null = await UserModel.findByIdAndUpdate(id, UserInput, {returnOriginal:false});
+            userInput.password = await bcrypt.hash(userInput.password, 10);
+            const user : UserDocument | null = await UserModel.findByIdAndUpdate(id, userInput, {returnOriginal:false});
             return this.dto(user);
         }
        catch (error) {

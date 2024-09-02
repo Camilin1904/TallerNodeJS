@@ -2,19 +2,19 @@ import mongoose from "mongoose";
 import {CommentDocument, CommentInput } from "../models/comment.model";
 import CommentModel from "../models/comment.model";
 import Comment from "../models/user.model"
+import { ObjectId } from "mongodb";
 
 
 export class CommentService {
 
-    async create(commentText: CommentInput): Promise<CommentDocument | null> {
+    async create(commentText: CommentInput): Promise<CommentDocument> {
 
-      console.log(commentText);
       const newComment = await CommentModel.create(commentText);
-      
-      if(newComment.parent){
-          const parent : CommentDocument | null = await CommentModel.findById(newComment.parent);
+      if(commentText.parent){
+          const parent = await CommentModel.findById(commentText.parent);
           if(parent){
             parent.comments.push(newComment);
+            parent.save()
           }
       }
 

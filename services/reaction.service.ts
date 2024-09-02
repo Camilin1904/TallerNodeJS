@@ -1,5 +1,8 @@
 import mongoose from "mongoose";
-import User, { UserDocument, Reaction, ReactionInput } from "../models/user.model";
+import { ReactionDocument } from "../models/comment.model";
+import { ReactionInput } from "../models/comment.model";
+import { Reaction } from "../models/comment.model"
+import User from "../models/user.model";
 import UserModel from "../models/user.model"
 
 

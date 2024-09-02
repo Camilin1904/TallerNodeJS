@@ -11,7 +11,7 @@ export interface UserDocument extends UserInput, mongoose.Document {
     updatedAt: Date;
     deletedAt?: Date;
     role: string;
-    comments: mongoose.Types.UUID[];
+    comments: mongoose.Types.ObjectId[];
 }
 
 
@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
     email: { type: String, required: true, index: true, unique: true },
     password: { type: String, required: true },
     role: { type: String, required: true },
-    comments: [{type: mongoose.Types.UUID, required:true}]  // Embedding the comments
+    comments: [{type: mongoose.Types.ObjectId, required:true}]  // Embedding the comments
 }, { timestamps: true, collection: "users" });
 
 const User = mongoose.model<UserDocument>("User", userSchema);
