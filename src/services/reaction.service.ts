@@ -34,7 +34,7 @@ export class ReactionService {
     }
 
     async update(commentId: string, reactionId: string, newText: ReactionInput, userId: string): Promise<ReactionDocument | null> {
-        if(await this.isOwner(userId, reactionId)){
+        if(await this.isOwner(userId, commentId, reactionId)){
             const comment = await Comment.findById(commentId);
             if (!comment) throw new Error('Comment not found');
 
@@ -54,7 +54,7 @@ export class ReactionService {
     }
 
     async delete(commentId: string, reactionId: string, userId: string): Promise<ReactionDocument | null> {
-        if(await this.isOwner(userId, reactionId)){
+        if(await this.isOwner(userId, commentId, reactionId)){
             const comment = await Comment.findById(commentId);
             
             if (!comment) throw new Error('Comment not found');
@@ -73,9 +73,9 @@ export class ReactionService {
         }
     }
 
-    async isOwner(authId: string, commentId: string): Promise<boolean>{
+    async isOwner(authId: string, commentId: string, reactionId: string): Promise<boolean>{
         const comment = await Comment.findById(commentId);
-        return authId==comment?.author
+        return authId == (comment?.reactions as mongoose.Types.DocumentArray<ReactionDocument>).id(reactionId)?.author.toString()
     }
 
 }
