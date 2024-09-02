@@ -1,16 +1,13 @@
 import mongoose from "mongoose";
-import { ReactionDocument } from "../models/comment.model";
-import { ReactionInput } from "../models/comment.model";
-import { Reaction } from "../models/comment.model"
-import User from "../models/user.model";
-import UserModel from "../models/user.model"
+import Comment, { CommentDocument, ReactionDocument, ReactionInput } from "../models/comment.model";
+import CommentModel from "../models/user.model"
 
 
 export class ReactionService {
 
-    async create(reactionText: ReactionInput): Promise<Reaction | null> {
-        const user = await User.findById(userId);
-        if (!user) throw new Error('User not found');
+    async create(commentId:string, reactionText: ReactionInput): Promise<ReactionDocument | null> {
+        const user = await Comment.findById(commentId);
+        if (!user) throw new Error('Comment not found');
 
         const newReaction: any = {...reactionText, updatedAt: new Date() };
         user.reactions.push(newReaction);
@@ -18,46 +15,49 @@ export class ReactionService {
         return newReaction;
     }
 
-    async findById(userId: string, reactionId: string): Promise<Reaction[] | null> {
-      const user = await User.findById(userId).select('reactions');
-      if (!user) throw new Error('User not found');
-      const reaction = (user.reactions as mongoose.Types.DocumentArray<Reaction>).id(reactionId);
+    async findById(commentId: string, reactionId: string): Promise<ReactionDocument[] | null> {
+      const user = await Comment.findById(commentId).select('reactions');
+      if (!user) throw new Error('Comment not found');
+      const reaction = (user.reactions as mongoose.Types.DocumentArray<ReactionDocument>).id(reactionId);
       return user.reactions;
   }
 
-    async findAll(userId: string): Promise<Reaction[] | null> {
-        const user = await User.findById(userId).select('reactions');
-        if (!user) throw new Error('User not found');
+    async findAll(commentId: string): Promise<ReactionDocument[] | null> {
+        const user = await Comment.findById(commentId).select('reactions');
+        if (!user) throw new Error('Comment not found');
         return user.reactions;
     }
 
-    async update(userId: string, reactionId: string, newText: ReactionInput): Promise<Reaction | null> {
-        const user = await User.findById(userId);
-        if (!user) throw new Error('User not found');
+    async update(commentId: string, reactionId: string, newText: ReactionInput): Promise<ReactionDocument | null> {
+        const user = await Comment.findById(commentId);
+        if (!user) throw new Error('Comment not found');
 
-        const reaction = (user.reactions as mongoose.Types.DocumentArray<Reaction>).id(reactionId);
+        const reaction = (user.reactions as mongoose.Types.DocumentArray<ReactionDocument>).id(reactionId);
 
         if (!reaction) throw new Error('Reaction not found');
 
 
-        reaction.title = newText.title;
-        reaction.text = newText.text;
-        reaction.updatedAt = new Date();
+        reaction.reaction = newText.reaction;
         
         user.save();
         return reaction;
     }
 
-    async delete(userId: string, reactionId: string): Promise<Reaction | null> {
-        const user = await User.findById(userId);
-        if (!user) throw new Error('User not found');
-        const reaction = (user.reactions as mongoose.Types.DocumentArray<Reaction>).id(reactionId);
+    async delete(commentId: string, reactionId: string): Promise<ReactionDocument | null> {
+        const user = await Comment.findById(commentId);
+        if (!user) throw new Error('Comment not found');
+        const reaction = (user.reactions as mongoose.Types.DocumentArray<ReactionDocument>).id(reactionId);
         if (!reaction) throw new Error('Reaction not found');
         const reactionIndex = user.reactions.findIndex(treaction => treaction._id === reaction._id)
         user.reactions.splice(reactionIndex, 1)
         user.save();
 
         return reaction;
+    }
+
+    async isOwner(authId: string, commentId: string): Promise<boolean>{
+        const comment = await Comment.findById(commentId);
+        return authId==comment?.author
     }
 
 }

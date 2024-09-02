@@ -49,7 +49,7 @@ export class CommentService {
       } catch (error) {
           throw error;
       }
-  }
+    }
 
     public async delete(id: string): Promise<CommentDocument | null>{
       try{
@@ -69,7 +69,13 @@ export class CommentService {
       catch (error) {
           throw error;
       }
-  }
+    }
+
+    async isOwner(authId: string, commentId: string): Promise<boolean>{
+      const comment = await CommentModel.findById(commentId);
+      return authId==comment?.author
+    }
+  
 
 }
 

@@ -1,12 +1,23 @@
 import mongoose from "mongoose";
 
 
+export const reactions={
+    ME_GUSTA:"ME_GUSTA",
+    AMOR:"AMOR",
+    EN_DESACUERDO:"EN_DESACUERDO",
+    ME_ENTRISTESE:"ME_ENTRISTESE",
+    ME_ENFADA:"ME_ENFADA",
+    VACIO:"VACIO"
+}
+
 
 export interface ReactionInput{
     reaction: string;
     author: mongoose.Types.ObjectId;
     authorName: string;
 }
+
+
 
 export interface ReactionDocument extends ReactionInput, mongoose.Document{
     createdAt: Date;
@@ -29,7 +40,7 @@ export interface CommentDocument extends CommentInput, mongoose.Document {
 }
 
 const reactionSchema = new mongoose.Schema({
-    text: { type: String, required: true },
+    reaction: { type: String, required: true },
     author: { type: mongoose.Types.ObjectId, required: true },
     authorName: { type: String, required: true },
 })
