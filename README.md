@@ -12,7 +12,7 @@ Este proyecto forma parte del curso de "Computación en Internet 3" del pregrado
 Desarrollar una aplicación backend robusta con Node.js que utilice TypeScript para un tipado fuerte y MongoDB para la persistencia de datos. La aplicación permitirá realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) en usuarios y comentarios, manejar la autenticación de usuarios, gestionar la creación y respuestas a comentarios (incluyendo creación y eliminación de reacciones).
 
 ## Despliegue
-El proyecto se encuentra desplegado en la siguiente url:
+El proyecto se encuentra desplegado en la siguiente url: https://tallernodejs.onrender.com
 
 ## Ejecución
 1. Clonar el repositorio
