@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "8dbd7627-5208-490c-be79-e4886fb89185",
 		"name": "Taller Node Postman",
-		"description": "Recuerde que dentro de este folder arriba se encuentra opción de variables, dentro de ella debe de existir una variable llamada bearerToken al cual en current value usted va a poner el jwt que le retornan los accesos de login como admin y login como usuario regular, el jwt que usted ingrese será el usado por todas las request.",
+		"description": "Recuerde que dentro de este folder arriba se encuentra opción de variables, dentro de ella debe de existir una variable llamada bearerToken al cual en current value usted va a poner el jwt que le retornan los accesos de login como admin y login como usuario regular, el jwt que usted ingrese será el usado por todas las request.\n\nHicimos nuestro mejor esfuerzo para que cada request como esta escrita pueda ser ejecutada sin necesidad de un cambio al menos una vez. Lamentamos si quizás nos equivocamos en algún id o \"/\". De todas formas en la carpeta User, Comments y Reactions cada una tiene su propio overview con los métodos.\n\nPorfavor ejecute los PUT antes de los DELETE si va a hacer uso de nuestros casos pre establecidos",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "34458513"
 	},
@@ -28,12 +28,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/users/login",
-							"protocol": "http",
+							"raw": "https://tallernodejs.onrender.com/api/users/login",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"tallernodejs",
+								"onrender",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"users",
@@ -58,12 +59,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/users/login",
-							"protocol": "http",
+							"raw": "https://tallernodejs.onrender.com/api/users/login",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"tallernodejs",
+								"onrender",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"users",
@@ -97,12 +99,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/users",
-							"protocol": "http",
+							"raw": "https://tallernodejs.onrender.com/api/users",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"tallernodejs",
+								"onrender",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"users"
@@ -163,12 +166,13 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/users",
-							"protocol": "http",
+							"raw": "https://tallernodejs.onrender.com/api/users",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"tallernodejs",
+								"onrender",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"users"
@@ -189,12 +193,13 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/users/66d53b3774070183a9c46e07",
-							"protocol": "http",
+							"raw": "https://tallernodejs.onrender.com/api/users/66d53b3774070183a9c46e07",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"tallernodejs",
+								"onrender",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"users",
@@ -225,12 +230,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/users/66d5bb43c883db80e810421f",
-							"protocol": "http",
+							"raw": "https://tallernodejs.onrender.com/api/users/66d5bb43c883db80e810421f",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"tallernodejs",
+								"onrender",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"users",
@@ -252,12 +258,13 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/users/66d5bb43c883db80e810421f",
-							"protocol": "http",
+							"raw": "https://tallernodejs.onrender.com/api/users/66d5bb43c883db80e810421f",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"tallernodejs",
+								"onrender",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"users",
@@ -268,7 +275,7 @@
 					"response": []
 				}
 			],
-			"description": "| Operation | Method | Address | Body |\n| --- | --- | --- | --- |\n| Login | POST | api/users/login | email, password |\n| Create | POST | api/users | name, email, password |\n| Get All | GET | api/users | None |\n| Get By Id | GET | api/users/:id | None |\n| Update | PUT | api/users/:id | name, email, password |\n| Delete | DELETE | api/users/:id | None |\n\nAs an example you have the following structure:\n\n``` json\n{\n    \"name\": \"Example User\",\n    \"email\": \"exampleUser@example.com\",\n    \"password\": \"user123*\"\n}\n\n ```"
+			"description": "Recuerde que para ejecutar las operaciones create, update y delete debe usar un jwt de superadmin\n\n| Operation | Method | Address | Body |\n| --- | --- | --- | --- |\n| Login | POST | api/users/login | email, password |\n| Create | POST | api/users | name, email, password |\n| Get All | GET | api/users | None |\n| Get By Id | GET | api/users/:id | None |\n| Update | PUT | api/users/:id | name, email, password |\n| Delete | DELETE | api/users/:id | None |\n\nEjemplo de estructura:\n\n``` json\n{\n    \"name\": \"Example User\",\n    \"email\": \"exampleUser@example.com\",\n    \"password\": \"user123*\"\n}\n\n ```"
 		},
 		{
 			"name": "Comments",
@@ -294,12 +301,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/comments",
-							"protocol": "http",
+							"raw": "https://tallernodejs.onrender.com/api/comments",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"tallernodejs",
+								"onrender",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"comments"
@@ -320,12 +328,13 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/comments",
-							"protocol": "http",
+							"raw": "https://tallernodejs.onrender.com/api/comments",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"tallernodejs",
+								"onrender",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"comments"
@@ -346,12 +355,13 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/comments/66d53b933e8ea39ecd4052e7",
-							"protocol": "http",
+							"raw": "https://tallernodejs.onrender.com/api/comments/66d53b933e8ea39ecd4052e7",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"tallernodejs",
+								"onrender",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"comments",
@@ -382,12 +392,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/comments/66d5cd09d60c14439eadc794",
-							"protocol": "http",
+							"raw": "https://tallernodejs.onrender.com/api/comments/66d5cd09d60c14439eadc794",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"tallernodejs",
+								"onrender",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"comments",
@@ -409,12 +420,13 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/comments/66d5cd09d60c14439eadc794",
-							"protocol": "http",
+							"raw": "https://tallernodejs.onrender.com/api/comments/66d5cd09d60c14439eadc794",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"tallernodejs",
+								"onrender",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"comments",
@@ -425,7 +437,7 @@
 					"response": []
 				}
 			],
-			"description": "| Operation | Method | Address | Body |\n| --- | --- | --- | --- |\n| Create | POST | api/comments | text, parent? |\n| Get All | GET | api/comments | None |\n| Get By Id | GET | api/comments/:id | None |\n| Update | PUT | api/comments/:id | text, parent? |\n| Delete | DELETE | api/comments/:id | None |\n\nAs an example you have the following structure:\n\n``` json\n{\n    \"text\": \"Nuevo comentario\",\n    \"parent\": \"66d5c19e141d971393e0acdb\"\n}\n\n ```"
+			"description": "Recuerde que para ejecutar las operaciones update y delete el jwt a usar debe ser del dueño de el comentario\n\nEn los escenarios pre establecidos el dueño del comentario a actualizar y borrar es:\n\n``` json\n{    \n    \"email\": \"user@example.com\",\n    \"password\": \"user123*\"\n} \n\n ```\n\n| Operation | Method | Address | Body |\n| --- | --- | --- | --- |\n| Create | POST | api/comments | text, parent? |\n| Get All | GET | api/comments | None |\n| Get By Id | GET | api/comments/:id | None |\n| Update | PUT | api/comments/:id | text, parent? |\n| Delete | DELETE | api/comments/:id | None |\n\nEjemplo de estructura:\n\n``` json\n{\n    \"text\": \"Nuevo comentario\",\n    \"parent\": \"66d5c19e141d971393e0acdb\"\n}\n\n ```"
 		},
 		{
 			"name": "Reactions",
@@ -451,12 +463,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/comments/reactions/66d5c19e141d971393e0acdb",
-							"protocol": "http",
+							"raw": "https://tallernodejs.onrender.com/api/comments/reactions/66d5c19e141d971393e0acdb",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"tallernodejs",
+								"onrender",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"comments",
@@ -479,12 +492,13 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/comments/reactions/66d53b933e8ea39ecd4052e7",
-							"protocol": "http",
+							"raw": "https://tallernodejs.onrender.com/api/comments/reactions/66d53b933e8ea39ecd4052e7",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"tallernodejs",
+								"onrender",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"comments",
@@ -507,12 +521,13 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/comments/reactions/66d53b933e8ea39ecd4052e7/66d53dd13e8ea39ecd405305",
-							"protocol": "http",
+							"raw": "https://tallernodejs.onrender.com/api/comments/reactions/66d53b933e8ea39ecd4052e7/66d53dd13e8ea39ecd405305",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"tallernodejs",
+								"onrender",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"comments",
@@ -537,7 +552,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"reaction\" : 1\r\n}",
+							"raw": "{\r\n    \"reaction\" : 4\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -545,18 +560,19 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/comments/reactions/66d53b933e8ea39ecd4052e7/66d53dd13e8ea39ecd405305",
-							"protocol": "http",
+							"raw": "https://tallernodejs.onrender.com/api/comments/reactions/66d53b933e8ea39ecd4052e7/66d53e573e8ea39ecd405314",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"tallernodejs",
+								"onrender",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"comments",
 								"reactions",
 								"66d53b933e8ea39ecd4052e7",
-								"66d53dd13e8ea39ecd405305"
+								"66d53e573e8ea39ecd405314"
 							]
 						}
 					},
@@ -574,25 +590,46 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/comments/reactions/66d53b933e8ea39ecd4052e7/66d53dd13e8ea39ecd405305",
-							"protocol": "http",
+							"raw": "https://tallernodejs.onrender.com/api/comments/reactions/66d53b933e8ea39ecd4052e7/66d53e573e8ea39ecd405314",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"tallernodejs",
+								"onrender",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"comments",
 								"reactions",
 								"66d53b933e8ea39ecd4052e7",
-								"66d53dd13e8ea39ecd405305"
+								"66d53e573e8ea39ecd405314"
 							]
 						}
 					},
 					"response": []
 				}
 			],
-			"description": "| Operation | Method | Address | Body |\n| --- | --- | --- | --- |\n| Create | POST | api/comments/reactions/:commentId | reaction |\n| Get All | GET | api/comments/reactions/:commentId | None |\n| Get By Id | GET | api/comments/reactions/:commentId/:id | None |\n| Update | PUT | api/comments/reactions/:commentId/:id | reaction |\n| Delete | DELETE | api/comments/reactions/:commentId/:id | None |\n\nAs an example you have the following structure:\n\n``` json\n{\n    \"reaction\" : 3\n}\n\n ```"
+			"description": "Recuerde que para ejecutar las operaciones update y delete el jwt a usar debe ser del dueño de la reacción\n\nEn los escenarios pre establecidos el dueño de la reacción a actualizar y borrar es:\n\n``` json\n{\n    \"email\": \"admin@example.com\",\n    \"password\": \"admin123*\"\n}\n\n ```\n\n| Operation | Method | Address | Body |\n| --- | --- | --- | --- |\n| Create | POST | api/comments/reactions/:commentId | reaction |\n| Get All | GET | api/comments/reactions/:commentId | None |\n| Get By Id | GET | api/comments/reactions/:commentId/:id | None |\n| Update | PUT | api/comments/reactions/:commentId/:id | reaction |\n| Delete | DELETE | api/comments/reactions/:commentId/:id | None |\n\nEjemplo de estructura::\n\n``` json\n{\n    \"reaction\" : 3\n}\n\n ```"
+		},
+		{
+			"name": "Requets para ver si el servidor está funcionando",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://tallernodejs.onrender.com/",
+					"protocol": "https",
+					"host": [
+						"tallernodejs",
+						"onrender",
+						"com"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
