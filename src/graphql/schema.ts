@@ -34,6 +34,7 @@ const typeDefs = gql`
     }
 
     type Reaction {
+        _id: ID!
         reaction: String!
         author: User!
         authorName: String!
@@ -59,7 +60,8 @@ const typeDefs = gql`
         updateComment(id: ID!, text: String): Comment!
         deleteComment(id: ID!): Comment
         createReaction(reaction: Int, commentId: ID!): Reaction!
-        updateReaction(commentId: ID!, id: ID!, reaction: String, author: ID, authorName: String): Reaction!
+        updateReaction(commentId: ID!, id: ID!, reaction: Int): Reaction!
+        deleteReaction(commentId: ID!, id: ID!): Reaction!
     }
 `;
 

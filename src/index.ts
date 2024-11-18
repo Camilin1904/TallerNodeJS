@@ -7,6 +7,7 @@ import { db } from '../config/db';
 import typeDefs from './graphql/schema';
 import resolvers from './graphql/resolvers';
 import auth from './middlewares/auth';
+import authRole from './middlewares/authRole';
 
 dotenv.config();
 
@@ -30,10 +31,15 @@ const server = new ApolloServer({
             "Reactions", "Reaction", 
             "CreateUser", "UpdateUser", "DeleteUser", 
             "CreateComment", "UpdateComment", "DeleteComment", 
-            "CreateReaction", "UpdateReaction"
+            "CreateReaction", "UpdateReaction", "DeleteReaction",
+            "Mutation"
         ];
 
-        const not_allowed = auth_routes.includes(req.body.operationName);
+        const admin_routes = [
+            "CreateUser", "UpdateUser", "DeleteUser"
+        ]
+
+        const not_allowed = auth_routes.includes(req.body.operationName) || admin_routes.includes(req.body.operationName);
 
         if (!not_allowed) {
             return {};
