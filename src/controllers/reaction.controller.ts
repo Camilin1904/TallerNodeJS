@@ -45,7 +45,7 @@ class ReactionController {
 
     public async getReaction(req: Request, res:Response){
         try{
-            const reaction: ReactionDocument | null = await reactionService.findById(req.params.commentId,req.params.id);
+            const reaction: ReactionDocument | null = await reactionService.findById(req.params.commentId, req.params.id);
             res.status(200).json(reaction)
         }
         catch (error){
