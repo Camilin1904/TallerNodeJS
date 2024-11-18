@@ -1,8 +1,6 @@
 import express from 'express';
 import { ApolloServer } from 'apollo-server';
 import dotenv from "dotenv";
-import { applyMiddleware } from 'graphql-middleware';
-import { makeExecutableSchema } from 'graphql-tools';
 import { db } from '../config/db';
 import typeDefs from './graphql/schema';
 import resolvers from './graphql/resolvers';
@@ -39,7 +37,7 @@ const server = new ApolloServer({
             "CreateUser", "UpdateUser", "DeleteUser"
         ]
 
-        const not_allowed = auth_routes.includes(req.body.operationName) || admin_routes.includes(req.body.operationName);
+        const not_allowed = auth_routes.includes(req.body.operationName);
 
         if (!not_allowed) {
             return {};
