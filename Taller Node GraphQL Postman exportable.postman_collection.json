@@ -1,0 +1,573 @@
+{
+	"info": {
+		"_postman_id": "239ec7de-03fc-4231-a30f-f74ccd0901a2",
+		"name": "Taller Node GraphQL Postman exportable",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34647470"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = pm.response.json();\r",
+									"let token = data.token;\r",
+									"pm.collectionVariables.set('token', token)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query Query ($email:String!, $password:String!){\r\n   login(email:$email, password:$password){\r\n        token\r\n        email\r\n        name\r\n    }  \r\n}",
+								"variables": "{\r\n    \"email\":\"admin@example.com\",\r\n    \"password\":\"admin123*\"\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{url}}",
+							"host": [
+								"{{url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Regular User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = pm.response.json();\r",
+									"let token = data.token;\r",
+									"pm.collectionVariables.set('token', token)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query Query ($email:String!, $password:String!){\r\n   login(email:$email, password:$password){\r\n        token\r\n        email\r\n        name\r\n    }  \r\n}",
+								"variables": "{\r\n    \"email\": \"user@example.com\",\r\n    \"password\": \"user123*\"\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{url}}",
+							"host": [
+								"{{url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation CreateUser($email:String!,$name:String!,$password:String!) {\r\n    createUser(name: $name, email: $email, password: $password) {\r\n        _id\r\n        name\r\n        email\r\n        password\r\n        role\r\n        createdAt\r\n        updatedAt\r\n        deletedAt\r\n    }\r\n}",
+								"variables": "{\r\n    \"name\": \"New User\",\r\n    \"email\": \"newUser@example.com\",\r\n    \"password\": \"user123*\"\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{url}}",
+							"host": [
+								"{{url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAll",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query Users {\r\n    users {\r\n        _id\r\n        name\r\n        email\r\n        role\r\n        createdAt\r\n        updatedAt\r\n        deletedAt\r\n    }\r\n}\r\n",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{url}}",
+							"host": [
+								"{{url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation UpdateUser($id: ID!, $email:String!,$name:String,$password:String) {\r\n    updateUser(id: $id, name: $name, email: $email, password: $password) {\r\n        _id\r\n        name\r\n        email\r\n        role\r\n        createdAt\r\n        updatedAt\r\n        deletedAt\r\n    }\r\n}",
+								"variables": "{\r\n    \"id\": \"66d5bb43c883db80e810421f\",\r\n    \"name\": \"Testing User Updated\",\r\n    \"email\": \"userT@example.com\",\r\n    \"password\": \"user123*\"\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{url}}",
+							"host": [
+								"{{url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation DeleteUser($id: ID!) {\r\n    deleteUser(id: $id) {\r\n        _id\r\n        name\r\n        email\r\n        role\r\n        createdAt\r\n        deletedAt\r\n    }\r\n}\r\n",
+								"variables": "{\r\n    \"id\":\"66d5bb43c883db80e810421f\"\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{url}}",
+							"host": [
+								"{{url}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comments",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation CreateComment($text: String!, $parent:ID!) {\r\n    createComment(text: $text, parent: $parent) {\r\n        _id\r\n        text\r\n        authorName\r\n        createdAt\r\n        updatedAt\r\n        deletedAt\r\n    }\r\n}\r\n",
+								"variables": "{\r\n    \"text\": \"Nuevo Comentario\",\r\n    \"parent\": \"66d618e8139eeef398c3e470\"\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{url}}",
+							"host": [
+								"{{url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAll",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query Comments {\r\n    comments {\r\n        _id\r\n        text\r\n        authorName\r\n        createdAt\r\n        updatedAt\r\n        deletedAt\r\n    }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{url}}",
+							"host": [
+								"{{url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query Comment($id:ID!) {\r\n    comment(id: $id) {\r\n        _id\r\n        text\r\n        authorName\r\n        createdAt\r\n        updatedAt\r\n        deletedAt\r\n    }\r\n}\r\n",
+								"variables": "{\r\n    \"id\":\"66d618e8139eeef398c3e470\"\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{url}}",
+							"host": [
+								"{{url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation UpdateComment($id:ID!,$text:String!) {\r\n    updateComment(id: $id, text: $text) {\r\n        _id\r\n        text\r\n        authorName\r\n        createdAt\r\n        updatedAt\r\n        deletedAt\r\n    }\r\n}",
+								"variables": "{\r\n    \"id\":\"66d6193c139eeef398c3e479\",\r\n    \"text\": \"Comentario de Testeo Actualizado\"\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{url}}",
+							"host": [
+								"{{url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation DeleteComment ($id:ID!) {\r\n    deleteComment(id: $id) {\r\n        _id\r\n        text\r\n        authorName\r\n        createdAt\r\n        updatedAt\r\n        deletedAt\r\n    }\r\n}\r\n",
+								"variables": "{\r\n    \"id\":\"66d6193c139eeef398c3e479\"\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{url}}",
+							"host": [
+								"{{url}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reactions",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation CreateReaction($commentId: ID!, $reaction: Int!) {\r\n    createReaction(commentId: $commentId, reaction: $reaction) {\r\n        reaction\r\n        authorName\r\n    }\r\n}\r\n",
+								"variables": "{\r\n    \"commentId\":\"66d618e8139eeef398c3e470\",\r\n    \"reaction\" : 4\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{url}}",
+							"host": [
+								"{{url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAll",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query Reactions($commentId: ID!) {\r\n    reactions(commentId: $commentId) {\r\n        reaction\r\n        authorName\r\n        _id\r\n    }\r\n}\r\n",
+								"variables": "{\r\n    \"commentId\":\"66d618e8139eeef398c3e470\"\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{url}}",
+							"host": [
+								"{{url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query Reaction($commentId: ID!, $id: ID!) {\r\n    reaction(commentId: $commentId, id: $id) {\r\n        _id\r\n        reaction\r\n        authorName\r\n    }\r\n}\r\n",
+								"variables": "{\r\n    \"commentId\":\"66d618e8139eeef398c3e470\",\r\n    \"id\":\"66d619c3139eeef398c3e487\"\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{url}}",
+							"host": [
+								"{{url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation UpdateReaction($commentId: ID!, $id: ID!) {\r\n    updateReaction(commentId: $commentId, id: $id) {\r\n        _id\r\n        reaction\r\n        authorName\r\n    }\r\n}\r\n",
+								"variables": "{\r\n    \"commentId\":\"66d618e8139eeef398c3e470\",\r\n    \"id\":\"66d619c3139eeef398c3e487\"\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{url}}",
+							"host": [
+								"{{url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation DeleteReaction($commentId: ID!, $id: ID!) {\r\n    deleteReaction(commentId: $commentId, id: $id) {\r\n        _id\r\n        reaction\r\n        authorName\r\n    }\r\n}\r\n",
+								"variables": "{\r\n    \"commentId\":\"66d618e8139eeef398c3e470\",\r\n    \"id\":\"66d619c3139eeef398c3e487\"\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{url}}",
+							"host": [
+								"{{url}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:4000",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
