@@ -34,7 +34,8 @@ const server = new ApolloServer({
         ];
 
         const admin_routes = [
-            "CreateUser", "UpdateUser", "DeleteUser"
+            //"CreateUser",  No me parece que sea solo admin
+            "UpdateUser", "DeleteUser", "Users",
         ]
 
         const not_allowed = auth_routes.includes(req.body.operationName);
@@ -52,6 +53,16 @@ const server = new ApolloServer({
         if (!user) {
             throw new Error("Not Authorized");
         }
+
+        if (admin_routes.includes(req.body.operationName)) {
+            await new Promise((resolve, reject) => {
+                authRole(req, res, (err) => {
+                    if (err) reject(err);
+                    else resolve(null);
+                });
+            });
+        }
+
         return { user };
     }   
 });
