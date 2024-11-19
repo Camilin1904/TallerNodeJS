@@ -35,7 +35,7 @@ const server = new ApolloServer({
 
         const admin_routes = [
             "CreateUser",  
-            "UpdateUser", "DeleteUser", "Users",
+            "UpdateUser", "DeleteUser"
         ]
 
         const not_allowed = auth_routes.includes(req.body.operationName);
