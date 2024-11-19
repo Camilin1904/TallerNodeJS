@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import Comment, { CommentDocument, ReactionDocument, ReactionInput } from "../models/comment.model";
 import CommentModel from "../models/user.model"
-import { NotAuthorizedError } from "../exceptions";
+import { NotAuthorizedError, CommentDoesNotExistError } from "../exceptions";
 
 
 export class ReactionService {
@@ -9,7 +9,7 @@ export class ReactionService {
     async create(commentId:string, reactionText: ReactionInput): Promise<ReactionDocument | null> {
         const comment = await Comment.findById(commentId);
         //If there is no comment, thre cannot be a reaction.
-        if (!comment) throw new Error('Comment not found');
+        if (!comment) throw new CommentDoesNotExistError('Comment not found');
         
         //This step is necesary as an object of type reaction input is not
         //accepted by the push method.
@@ -22,21 +22,21 @@ export class ReactionService {
     async findById(commentId: string, reactionId: string): Promise<ReactionDocument | null> {
         //limits the ammount of fields to use
         const comment = await Comment.findById(commentId).select('reactions');
-        if (!comment) throw new Error('Comment not found');
+        if (!comment) throw new CommentDoesNotExistError('Comment not found');
         const reaction: ReactionDocument | null = (comment.reactions as mongoose.Types.DocumentArray<ReactionDocument>).id(reactionId);
         return reaction;
   }
 
     async findAll(commentId: string): Promise<ReactionDocument[] | null> {
         const comment = await Comment.findById(commentId).select('reactions');
-        if (!comment) throw new Error('Comment not found');
+        if (!comment) throw new CommentDoesNotExistError('Comment not found');
         return comment.reactions;
     }
 
     async update(commentId: string, reactionId: string, newText: ReactionInput, userId: string): Promise<ReactionDocument | null> {
         if(await this.isOwner(userId, commentId, reactionId)){
             const comment = await Comment.findById(commentId);
-            if (!comment) throw new Error('Comment not found');
+            if (!comment) throw new CommentDoesNotExistError('Comment not found');
 
             const reaction = (comment.reactions as mongoose.Types.DocumentArray<ReactionDocument>).id(reactionId);
 
@@ -49,7 +49,7 @@ export class ReactionService {
             comment.save();
             return reaction;
         }else{
-            throw new NotAuthorizedError("This user cannot nodify this reaction")
+            throw new NotAuthorizedError("This user cannot modify this reaction")
         }
     }
 
@@ -57,7 +57,7 @@ export class ReactionService {
         if(await this.isOwner(userId, commentId, reactionId)){
             const comment = await Comment.findById(commentId);
             
-            if (!comment) throw new Error('Comment not found');
+            if (!comment) throw new CommentDoesNotExistError('Comment not found');
 
             const reaction = (comment.reactions as mongoose.Types.DocumentArray<ReactionDocument>).id(reactionId);
 
@@ -69,7 +69,7 @@ export class ReactionService {
 
             return reaction;
         }else{
-            throw new NotAuthorizedError("This user cannot nodify this reaction")
+            throw new NotAuthorizedError("This user cannot modify this reaction")
         }
     }
 

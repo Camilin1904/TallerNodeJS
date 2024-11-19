@@ -34,7 +34,7 @@ const server = new ApolloServer({
         ];
 
         const admin_routes = [
-            //"CreateUser",  No me parece que sea solo admin
+            "CreateUser",  
             "UpdateUser", "DeleteUser", "Users",
         ]
 
