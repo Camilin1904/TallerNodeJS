@@ -43,10 +43,6 @@ El proyecto se encuentra desplegado en la siguiente url: https://tallernodejs-xg
 2. Tener instalado de forma global npm y yarn
 3. Instalar las dependencias a través del comando 
 ```console
-   yarn install
-```
-o
-```console
    npm install
 ```
 4. Crear el archivo .env el cual deberá tener las siguientes variables (Estos valores son privados):
@@ -55,7 +51,8 @@ o
 	* JWT_SECRET = la llave privada
 5. Ejecutar el proyecto
 ```console
-   yarn build
+   npm run build
+   npx node dist/src/index.js
 ```
 
 ## Postman
