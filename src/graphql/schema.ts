@@ -1,15 +1,46 @@
 import { gql } from "apollo-server";
 
+export const fragments = gql`
+    fragment TimestampFields on Timestamp {
+        createdAt
+        updatedAt
+        deletedAt
+    }
+
+    fragment CoreUserFields on User {
+        name
+        email
+    }
+
+    fragment UserFields on User {
+        _id
+        name
+        email
+        role
+    }
+
+    fragment CommentFields on Comment {
+        _id
+        text
+    }
+
+    fragment ReactionFields on Reaction {
+        _id
+        reaction
+    }
+`;
+
 const typeDefs = gql`
+    ${fragments}
 
-  type Login {
+    type Login {
         token: String
-        email: String
-        name: String
-  }
+        name: String!
+        email: String!
+    }
 
-  type User {
-        _id: ID
+    type User {
+        _id: ID!
         name: String!
         email: String!
         password: String!
@@ -19,27 +50,17 @@ const typeDefs = gql`
         updatedAt: String!
         deletedAt: String
     }
-
+    
     type Comment {
         _id: ID!
         text: String!
-        author: User!
-        authorName: String!
-        comments: [Comment]
-        parent: Comment
-        reactions: [Reaction]
-        createdAt: String!
-        updatedAt: String!
-        deletedAt: String
+        parent: ID
     }
 
     type Reaction {
         _id: ID!
-        reaction: String!
-        author: User!
-        authorName: String!
-        createdAt: String!
-        deletedAt: String
+        reaction: Int!
+        commentId: ID!  
     }
 
     type Query {
@@ -52,6 +73,7 @@ const typeDefs = gql`
         reaction(commentId: ID!, id: ID!): Reaction
     }
 
+
     type Mutation {
         createUser(name: String!, email: String!, password: String!): User!
         updateUser(id: ID!, name: String, email: String, password: String): User!
@@ -63,6 +85,8 @@ const typeDefs = gql`
         updateReaction(commentId: ID!, id: ID!, reaction: Int): Reaction!
         deleteReaction(commentId: ID!, id: ID!): Reaction!
     }
+
+
 `;
 
 export default typeDefs;
